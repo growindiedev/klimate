@@ -1,0 +1,19 @@
+{
+  "name": "klimate",
+  "version": "1.0.0",
+  "description": "For all your weather needs.",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarryingnut/klimate.git"
+  },
+  "author": "Abhishek Ranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarryingnut/klimate/issues"
+  },
+  "homepage": "https://github.com/jarryingnut/klimate#readme"
+}
