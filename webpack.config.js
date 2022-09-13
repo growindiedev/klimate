@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Development",
+      template: "src/index.html",
     }),
     // using this plugin to automatically generate index.html
   ],
