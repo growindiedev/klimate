@@ -1,3 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: antiquewhite;
+  display: grid;
+  grid-template-rows: 2fr 6fr 2fr 0.5fr;
+  background-image: url("weather.jpeg");
+  background-size: cover;
+  color:rgb(251, 251, 251);
+  font-family: Roboto, 'Times New Roman', Times, serif;
+
+  > * {
+    border: 1px solid red;
+  }
+
+ 
+}
+
+.header {
+
+  * {
+    // border: 1px solid green;
+  }
+  
+  .upper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem ;
+  }
+   
+  .lower {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  input {
+    width: 40%;
+    color: rgb(36, 35, 42);
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 28px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+    background: rgb(251, 251, 251);
+    transition: all 0.1s ease 0s;
+  }
+
+  input:focus {
+    border: 2px solid rgb(124, 138, 255);
+  }
+
+  button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 12px 24px;
+    border: 0;
+    color: #fff;
+    background: #ff5000;
+    line-height: 1.15;
+    font-size: 16px;
+  }
+
+  button:hover, input:hover {
+    transition: all .1s ease;
+    box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
+  }
 }
