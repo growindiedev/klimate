@@ -9,7 +9,7 @@
 
 body {
   display: grid;
-  grid-template-rows: 2fr 6fr 3fr 1fr;
+  grid-template-rows: 2fr 6fr 3fr 0.8fr;
   background-image: url("weather.jpeg");
   background-size: cover;
   color:rgb(251, 251, 251);
@@ -83,27 +83,29 @@ body {
 
 .main {
  display: flex;
- align-items: center;
+ align-items: start;
  justify-content: center;
+ //border: 1px solid red;
 }
 
 .main-card {
   display: grid;
-  width: fit-content;
-  height: fit-content;
+  // width: fit-content;
+  //height: fit-content;
+  //max-width: 40%;
+  // border: 1px solid red;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1.5fr;
   gap: 1rem;
-
   > * {
-   //  border: 1px solid green;
+   // border: 1px solid green;
   }
 
   .place {
     grid-column: 1/-1;
     font-size: 4rem;
     font-weight: 800;
-    text-align: center;
+    justify-self: center;
     align-self: center;
   }
 
@@ -111,13 +113,21 @@ body {
     grid-column: 1/2;
     grid-row: 2/-1;
     font-size: 8rem;
+    align-self: center;
+    justify-self: center;
   }
 
   .card {
+    grid-column: 2/3;
+    grid-row: 2/-1;
     font-size: 2rem;
     font-weight: 900;
     justify-self: center;
     align-self: center;
+    // font-size: 3rem;
+    .temp {
+      font-size: 3rem;
+    }
   }
 }
 
@@ -149,6 +159,5 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
-  //text-align: center;
+  background: rgba(13, 0, 0, 0.325);
 }
