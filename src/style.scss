@@ -9,14 +9,17 @@
 
 body {
   display: grid;
-  grid-template-rows: 2fr 6fr 2fr 0.5fr;
+  grid-template-rows: 2fr 6fr 3fr 1fr;
   background-image: url("weather.jpeg");
   background-size: cover;
   color:rgb(251, 251, 251);
   font-family: Roboto, 'Times New Roman', Times, serif;
+    text-shadow: 0 0 10px rgba(0,0,0,.8);
+
+  height: 100vh;
 
   > * {
-    border: 1px solid red;
+    // border: 1px solid red;
   }
 
  
@@ -64,16 +67,88 @@ body {
     cursor: pointer;
     font-weight: 600;
     border-radius: 3px;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border: 0;
     color: #fff;
     background: #ff5000;
     line-height: 1.15;
-    font-size: 16px;
+    font-size: 1.3rem;
   }
 
   button:hover, input:hover {
     transition: all .1s ease;
     box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
   }
+}
+
+.main {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.main-card {
+  display: grid;
+  width: fit-content;
+  height: fit-content;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1.5fr;
+  gap: 1rem;
+
+  > * {
+   //  border: 1px solid green;
+  }
+
+  .place {
+    grid-column: 1/-1;
+    font-size: 4rem;
+    font-weight: 800;
+    text-align: center;
+    align-self: center;
+  }
+
+  .weather-logo {
+    grid-column: 1/2;
+    grid-row: 2/-1;
+    font-size: 8rem;
+  }
+
+  .card {
+    font-size: 2rem;
+    font-weight: 900;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.weekly-weather {
+  overflow-y: scroll;
+  > * {
+    // border: 2px solid white;
+  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  padding: 0 3rem;
+  gap: 1rem;
+
+  .weekly-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0.6rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    :nth-child(2) {
+      font-size: 4rem;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  //text-align: center;
 }
