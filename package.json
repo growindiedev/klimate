@@ -30,6 +30,9 @@
     "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.2",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.1.0",
+    "url-loader": "^4.1.1"
   }
 }

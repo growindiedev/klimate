@@ -9,21 +9,6 @@ module.exports = {
   devServer: {
     static: "./dist", //rebuilds when anything changes
   },
-  optimization: {
-    runtimeChunk: "single",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/index.html",
-    }),
-    new Dotenv(),
-    // using this plugin to automatically generate index.html
-  ],
-  output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true, //cleans the old files in dist dir on each build
-  },
 
   module: {
     rules: [
@@ -46,6 +31,30 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.html$/i,
+        use: [
+          {
+            loader: "html-loader",
+            //this solve the image loading problem in html files
+          },
+        ],
+      },
     ],
+  },
+
+  optimization: {
+    runtimeChunk: "single",
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/index.html",
+    }),
+    new Dotenv(),
+  ],
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true, //cleans the old files in dist dir on each build
   },
 };

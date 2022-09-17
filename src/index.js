@@ -1,5 +1,7 @@
 import "./style.scss";
 import { fetchApi } from "./apiFunctions";
+import index from "./index.html";
+
 //https://kfig21.github.io/weather_api_react/
 
 let searchBar = document.querySelector(".search-bar");
