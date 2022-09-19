@@ -1,17 +1,9 @@
 const mainPlace = document.querySelector(".main-card > .place");
-const weeklyWeather = document.querySelector(".weekly-weather");
+let weeklyWeather = document.querySelector(".weekly-weather");
 const locationIcon = document.querySelector("#main-weathericon");
 const temp = document.querySelector(".main-card > .card > .temp");
 const highLow = document.querySelector(".main-card > .card > .high-low");
 const desc = document.querySelector(".main-card > .card > .desc");
-
-{
-  /* <div class="weekly-card">
-  <div class="weekly-date">date</div>
-  <img id="weekly-weathericon" />
-  <div class="daily-high-low">high/low</div>
-</div>; */
-}
 
 export const updateMainCard = (data, tempUnit) => {
   let unit = "";
@@ -52,7 +44,7 @@ const createWeeklyCard = (date, weather, temp, unit) => {
 };
 
 export const updateForecastCards = (data, tempUnit) => {
-  //let {dt, weather, temp } = data;
+  weeklyWeather.innerHTML = "";
   let unit = "";
   if (tempUnit == "metric") {
     unit = "C";
@@ -67,7 +59,6 @@ export const updateForecastCards = (data, tempUnit) => {
       element.temp,
       unit
     );
-
     weeklyWeather.appendChild(weeklyCard);
   });
 };
