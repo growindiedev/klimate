@@ -1,4 +1,4 @@
-import { updateMainCard } from "./updateDOM";
+import { updateMainCard, updateForecastCards } from "./updateDOM";
 
 import axios from "axios";
 
@@ -15,41 +15,42 @@ function getDataFromForm() {
       .replace(/(\s+,)/g, ",") // remove any white space that preceeds a comma
       .replace(/\s+/g, "+"); // replace any remaining white space with +, so it works in api call
   }
-
   return "";
 }
 
-const fetchData = async (city, tempUnit) => {
+const fetchApi = async (city, tempUnit) => {
+  let weatherCall;
   try {
-    let { data } = await axios.get(
+    weatherCall = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=${tempUnit}`
     );
     // use localStorage
-    updateMainCard(data, tempUnit);
-    console.log(data);
+    updateMainCard(weatherCall.data, tempUnit);
+    //console.log(data);
   } catch (error) {
     alert(error);
   }
 
-  // try {
-  //   let response = await axios.get(
-  //     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=${tempUnit}`
-  //   );
-  //   console.log("2", response);
-  // } catch (err) {
-  //   alert(err);
-  // }
+  try {
+    let forecastCall = await axios.get(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCall.data.coord.lat}&lon=${weatherCall.data.coord.lon}&exclude=minutely,hourly,alerts&appid=e705fd2733337e25a8b91977646312e1&units=${tempUnit}`
+    );
+    updateForecastCards(forecastCall.data.daily, tempUnit);
+    console.log("2", forecastCall);
+  } catch (err) {
+    alert(err);
+  }
 };
 
-export const fetchApi = async () => {
+export const getData = async () => {
   const cityName = getDataFromForm();
   const localCity = localStorage.getItem("localCity");
   const localTemp = localStorage.getItem("localTemp");
 
   if (!cityName && localCity && localTemp) {
-    fetchData(localCity, localTemp);
+    fetchApi(localCity, localTemp);
   } else if (cityName) {
-    fetchData(cityName, localTemp);
+    fetchApi(cityName, localTemp);
     localStorage.setItem("localCity", cityName);
   }
 };
@@ -61,5 +62,5 @@ export const toggleTemp = () => {
   } else if (localTemp == "imperial") {
     localStorage.setItem("localTemp", "metric");
   }
-  fetchApi();
+  getData();
 };
