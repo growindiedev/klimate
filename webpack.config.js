@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
+  devtool: "inline-source-map", // figures out root file of the error
   output: {
     filename: "main.[contentHash].js",
     path: path.resolve(__dirname, "dist"),
@@ -22,7 +23,6 @@ module.exports = {
     new Dotenv(),
     // using this plugin to automatically generate index.html
   ],
-  devtool: "inline-source-map", // figures out root file of the error
   devServer: {
     static: {
       directory: path.resolve(__dirname, "dist"),
