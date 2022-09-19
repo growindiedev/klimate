@@ -1,5 +1,7 @@
 import { updateMainCard } from "./updateDOM";
 
+import axios from "axios";
+
 function getDataFromForm() {
   const input = document.querySelector(".search-bar");
   const cityName = input.value;
@@ -19,19 +21,23 @@ function getDataFromForm() {
 
 export const fetchApi = async () => {
   let cityName = getDataFromForm();
-  await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.WEATHER_API_KEY}&units=metric`
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      updateMainCard(data);
-    })
-    .catch(function (err) {
-      alert(err);
-      return error;
-    });
-  return;
+  try {
+    let response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+    );
+    updateMainCard(response);
+    console.log(response);
+    //return;
+  } catch (error) {
+    alert(error);
+  }
+
+  try {
+    let response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${process.env.WEATHER_API_KEY}&units=metric`
+    );
+    console.log("2", response);
+  } catch (err) {
+    alert(err);
+  }
 };

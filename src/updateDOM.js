@@ -7,7 +7,7 @@ let temp = document.querySelector(".main-card > .card > .temp");
 let highLow = document.querySelector(".main-card > .card > .high-low");
 let desc = document.querySelector(".main-card > .card > .desc");
 
-export const updateMainCard = (data) => {
+export const updateMainCard = ({ data }) => {
   mainPlace.textContent = data.name;
   temp.textContent = data.main.temp + "°";
   highLow.textContent = `${data.main.temp_max}° / ${data.main.temp_min}°`;
