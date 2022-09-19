@@ -7,11 +7,13 @@ if (!localStorage.getItem("localCity")) {
   localStorage.setItem("localCity", "Montreal");
   localStorage.setItem("localTemp", "metric");
   fetchApi();
+} else {
+  fetchApi();
 }
 
 let tempToggleBtn = document.querySelector(".temp-toggle-btn");
 let searchBtn = document.querySelector(".search-btn");
 
-TempToggleBtn.addEventListener("click", toggleTemp);
+//TempToggleBtn.addEventListener("click", toggleTemp);
 searchBtn.addEventListener("click", fetchApi);
 console.log("localStorage", localStorage);

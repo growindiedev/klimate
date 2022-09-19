@@ -27,21 +27,20 @@ const fetchData = async (city, tempUnit) => {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=${tempUnit}`
     );
     // use localStorage
-    updateMainCard(data);
-    console.log(response);
-    return;
+    updateMainCard(data, tempUnit);
+    console.log(data);
   } catch (error) {
     alert(error);
   }
 
-  try {
-    let response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=${tempUnit}`
-    );
-    console.log("2", response);
-  } catch (err) {
-    alert(err);
-  }
+  // try {
+  //   let response = await axios.get(
+  //     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=${tempUnit}`
+  //   );
+  //   console.log("2", response);
+  // } catch (err) {
+  //   alert(err);
+  // }
 };
 
 export const fetchApi = async () => {
@@ -51,7 +50,8 @@ export const fetchApi = async () => {
 
   if (!cityName && localCity && localTemp) {
     fetchData(localCity, localTemp);
-  } else if (cityName && !localCity) {
+  } else if (cityName) {
     fetchData(cityName, localTemp);
+    localStorage.setItem("localCity", cityName);
   }
 };
