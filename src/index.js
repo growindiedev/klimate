@@ -14,6 +14,6 @@ if (!localStorage.getItem("localCity")) {
 let tempToggleBtn = document.querySelector(".temp-toggle-btn");
 let searchBtn = document.querySelector(".search-btn");
 
-//TempToggleBtn.addEventListener("click", toggleTemp);
+tempToggleBtn.addEventListener("click", toggleTemp);
 searchBtn.addEventListener("click", fetchApi);
 console.log("localStorage", localStorage);

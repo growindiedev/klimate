@@ -19,8 +19,6 @@ function getDataFromForm() {
   return "";
 }
 
-export const toggleTemp = () => {};
-
 const fetchData = async (city, tempUnit) => {
   try {
     let { data } = await axios.get(
@@ -44,9 +42,9 @@ const fetchData = async (city, tempUnit) => {
 };
 
 export const fetchApi = async () => {
-  let cityName = getDataFromForm();
-  let localCity = localStorage.getItem("localCity");
-  let localTemp = localStorage.getItem("localTemp");
+  const cityName = getDataFromForm();
+  const localCity = localStorage.getItem("localCity");
+  const localTemp = localStorage.getItem("localTemp");
 
   if (!cityName && localCity && localTemp) {
     fetchData(localCity, localTemp);
@@ -54,4 +52,14 @@ export const fetchApi = async () => {
     fetchData(cityName, localTemp);
     localStorage.setItem("localCity", cityName);
   }
+};
+
+export const toggleTemp = () => {
+  const localTemp = localStorage.getItem("localTemp");
+  if (localTemp == "metric") {
+    localStorage.setItem("localTemp", "imperial");
+  } else if (localTemp == "imperial") {
+    localStorage.setItem("localTemp", "metric");
+  }
+  fetchApi();
 };

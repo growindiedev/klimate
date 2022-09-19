@@ -36,6 +36,10 @@ body {
     justify-content: space-between;
     padding: 0.5rem 1rem ;
   }
+
+  .temp-toggle-btn, .top-date-display {
+    cursor: pointer;
+  }
    
   .lower {
     display: flex;

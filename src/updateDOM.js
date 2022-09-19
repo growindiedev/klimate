@@ -22,5 +22,3 @@ export const updateMainCard = (data, tempUnit) => {
   let { icon } = data.weather[0];
   locationIcon.setAttribute("src", `icons/${icon}.png`);
 };
-
-export const toggleTemp = () => {};
