@@ -1,3 +1,5 @@
+//import myImage from "./icons/01n.png";
+
 let mainPlace = document.querySelector(".main-card > .place");
 let locationIcon = document.querySelector("#main-weathericon");
 //let mainLogo = document.querySelector(".main-card > .weather-logo");
@@ -13,7 +15,5 @@ export const updateMainCard = (data) => {
   let { icon } = data.weather[0];
   alert(data.weather[0].icon);
   console.log(locationIcon);
-  //locationIcon.setAttribute("src", `icons/${icon}.png`);
-  locationIcon.src = `icons/${icon}.png`;
-  //locationIcon.setAttribute("style", `content:url("icons/${icon}.png")`);
+  locationIcon.setAttribute("src", `icons/${icon}.png`);
 };

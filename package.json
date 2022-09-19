@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --open",
-    "build": "webpack"
+    "start": "webpack serve --open --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jarryingnut/klimate#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.0",
@@ -31,8 +32,6 @@
   },
   "dependencies": {
     "dotenv": "^16.0.2",
-    "file-loader": "^6.2.0",
-    "html-loader": "^4.1.0",
-    "url-loader": "^4.1.1"
+    "html-loader": "^4.1.0"
   }
 }

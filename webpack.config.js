@@ -1,25 +1,39 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
+  output: {
+    filename: "main.[contentHash].js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true, //cleans the old files in dist dir on each build
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "src/icons", to: "icons" }],
+    }),
+
+    new Dotenv(),
+    // using this plugin to automatically generate index.html
+  ],
   devtool: "inline-source-map", // figures out root file of the error
   devServer: {
-    static: "./dist", //rebuilds when anything changes
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    //static: "./dist", //rebuilds when anything changes
   },
-
+  // optimization: {
+  //   runtimeChunk: "single",
+  // },
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },
       {
         test: /\.scss$/i,
         use: [
@@ -31,6 +45,7 @@ module.exports = {
           "sass-loader",
         ],
       },
+
       {
         test: /\.html$/i,
         use: [
@@ -40,21 +55,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
     ],
-  },
-
-  optimization: {
-    runtimeChunk: "single",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/index.html",
-    }),
-    new Dotenv(),
-  ],
-  output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true, //cleans the old files in dist dir on each build
   },
 };
